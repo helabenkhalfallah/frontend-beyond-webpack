@@ -1,0 +1,6 @@
+packages:
+  - webpack-app
+  - esbuild-app
+  - vite-app
+  - swc-app
+  - rollup-app

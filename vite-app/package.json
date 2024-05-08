@@ -1,0 +1,23 @@
+{
+    "name": "vite-app",
+    "version": "1.0.0",
+    "description": "Frontend Vite App",
+    "author": "Ben Khalfallah Héla",
+    "license": "ISC",
+    "main": "index.js",
+    "homepage": "https://github.com/helabenkhalfallah/frontend-beyond-webpack",
+    "scripts": {
+      "start": "",
+      "build": "",
+      "analyze": "",
+      "lint": "",
+      "lint:fix": ""
+    },
+    "dependencies": {
+      
+    },
+    "devDependencies": {
+      
+    }
+  }
+  
