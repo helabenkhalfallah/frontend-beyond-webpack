@@ -23,6 +23,7 @@
     "@eslint/js": "=9.4.0",
     "concurrently": "=8.2.2",
     "esbuild": "=0.21.4",
+    "esbuild-plugin-compress": "^1.0.1",
     "eslint": "=9.4.0",
     "eslint-plugin-react": "=7.32.2",
     "globals": "=15.3.0"
