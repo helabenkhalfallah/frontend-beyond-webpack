@@ -1,19 +1,47 @@
 // Importing required modules
-import fs from 'fs'; // File system module to handle file operations
-import process from 'node:process'; // Provides information about, and control over, the current Node.js process
-import esbuild from 'esbuild'; // JavaScript bundler and minifier for web distribution
-import { clean } from 'esbuild-plugin-clean'; // Plugin for cleaning up output/assets before building
-import { compress } from 'esbuild-plugin-compress'; // Plugin to compress the bundled code
+import path from 'node:path'; // Importing the 'path' module from Node.js for handling and transforming file paths
+import fs from 'node:fs'; // Importing the 'fs' module from Node.js for handling file system operations
+import process from 'node:process'; // Importing the 'process' module from Node.js for accessing information about the current Node.js process
+import esbuild from 'esbuild'; // Importing the 'esbuild' module for bundling and minifying JavaScript for web distribution
+import { clean } from 'esbuild-plugin-clean'; // Importing the 'clean' function from 'esbuild-plugin-clean' for cleaning up output/assets before building
+import { compress } from 'esbuild-plugin-compress'; // Importing the 'compress' function from 'esbuild-plugin-compress' for compressing the bundled code
 
 // Get the command line arguments
-const args = process.argv;
+const args = process.argv; // Storing the command line arguments in the 'args' variable
 
 // Define the configuration for esbuild
 const config = {
-    logLevel: 'info', // The level of logging to use
-    entryPoints: ['src/index.js'], // The entry point of the application
-    bundle: true, // Whether to bundle the code or not
-    loader: { '.js': 'jsx' }, // The loader to use for JavaScript files
+    logLevel: 'info', // Setting the level of logging to 'info'
+    entryPoints: ['src/index.js'], // Setting the entry point of the application to 'src/index.js'
+    bundle: true, // Enabling code bundling
+    loader: { '.js': 'jsx' }, // Setting the loader for JavaScript files to 'jsx'
+};
+
+// Function to copy assets
+const copyAssets = (outputFiles, mode) => {
+    // If the mode is 'development' and the 'dist' directory exists, remove it
+    if(mode === 'development' && fs.existsSync('dist')) {
+        fs.rmSync('dist', { recursive: true, force: true });
+    }
+
+    // Define the path of the output HTML file
+    const outputHtmlFile = './dist/index.html';
+
+    // Copy the 'public' directory to the 'dist' directory
+    fs.cpSync('./public', './dist', {recursive: true});
+
+    // Generate the script tags for the output files
+    const outputScripts = outputFiles
+        .map(chunk => `    <script type="module" src="./${path.basename(chunk.path)}"></script>`)
+        .join('\n');
+
+    // Read the content of the output HTML file
+    const htmlNewContent = fs
+        .readFileSync(outputHtmlFile, { encoding: 'utf8', flag: 'r' })
+        .replace('</body>', `${outputScripts}\n</body>`); // Replace the '</body>' tag with the script tags and the '</body>' tag
+
+    // Write the new content to the output HTML file
+    fs.writeFileSync(outputHtmlFile, htmlNewContent);
 };
 
 // If the '--build' argument is passed in, build the application
@@ -27,19 +55,25 @@ if (args.includes('--build')) {
             metafile: true, // Generate stats about the bundle
             splitting: true, // Enable code splitting
             format: 'esm', // Use ES modules
-            outdir: 'public/build', // Output directory for the build
+            outdir: 'dist', // Set the output directory for the build to 'dist'
             write: false, // Don't write the output to disk
             plugins: [
                 clean({
-                    patterns: ['./public/build/*', 'meta.json'],
+                    patterns: ['./dist/*', 'meta.json'], // Define the patterns to clean
                 }),
                 compress({
-                    outputDir: '.', // Output directory for the compressed files
+                    outputDir: '.', // Set the output directory for the compressed files to '.'
                     exclude: ['**/*.map'], // Exclude source map files from compression
                 }),
             ],
         })
-        .then(result => fs.writeFileSync('meta.json', JSON.stringify(result.metafile))) // Write the metafile to disk
+        .then(result => {
+            // After the build, copy the assets
+            copyAssets(result.outputFiles, 'production');
+
+            // Write the metafile to disk
+            fs.writeFileSync('meta.json', JSON.stringify(result.metafile));
+        })
         .catch((e) => {
             // If there's an error, log it and exit the process with a status of 1
             console.error(e);
@@ -53,15 +87,24 @@ if (args.includes('--start')) {
         .context({
             ...config, // Use the defined configuration
             minify: false, // Don't minify the code
-            outfile: 'public/build/Bundle.js', // The output file for the bundled code
+            outfile: 'dist/Bundle.js', // Set the output file to 'dist/Bundle.js'
             sourcemap: true, // Generate a source map
         })
         .then(async (ctx) => {
+            // After the context is created, copy the assets
+            copyAssets(
+                [
+                    {
+                        path: 'Bundle.js' // Define the path of the bundle
+                    }
+                ],
+                'development');
+
             // Watch the files for changes
             await ctx.watch();
             // Serve the files
             await ctx.serve({
-                servedir: 'public', // The directory to serve
+                servedir: 'dist', // Set the directory to serve to 'dist'
                 onRequest: ({
                                 remoteAddress,
                                 method,
