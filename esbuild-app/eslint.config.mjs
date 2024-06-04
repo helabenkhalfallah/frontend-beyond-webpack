@@ -2,7 +2,7 @@ import babelParser from "@babel/eslint-parser";
 
 export default [
   {
-    files: ["src/**/*.js", "src/**/*.js", "src/**/*.jsx", "src/**/*.mjs"],
+    files: ["src/**/*.js", "src/**/*.jsx", "src/**/*.mjs"],
     languageOptions: {
       parser: babelParser,
       parserOptions: {
