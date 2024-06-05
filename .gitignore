@@ -133,3 +133,4 @@ dist
 **/Bundle.**
 **/meta.**
 **/build/**
+**/bundle-analysis.html
