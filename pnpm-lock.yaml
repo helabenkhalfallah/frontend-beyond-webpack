@@ -168,9 +168,15 @@ importers:
       '@rollup/plugin-typescript':
         specifier: ^11.1.6
         version: 11.1.6(rollup@4.18.0)(tslib@2.6.2)(typescript@5.4.5)
+      rollup-plugin-brotli:
+        specifier: ^3.1.0
+        version: 3.1.0
       rollup-plugin-cleandir:
         specifier: ^2.0.0
         version: 2.0.0(rollup@4.18.0)
+      rollup-plugin-gzip:
+        specifier: ^3.1.2
+        version: 3.1.2(rollup@4.18.0)
       rollup-plugin-livereload:
         specifier: ^2.0.5
         version: 2.0.5
@@ -6413,8 +6419,18 @@ packages:
   ripemd160@2.0.2:
     resolution: {integrity: sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA==}
 
+  rollup-plugin-brotli@3.1.0:
+    resolution: {integrity: sha512-vXRPVd9B1x+aaXeBdmLKNNsai9AH3o0Qikf4u0m1icKqgi3qVA4UhOfwGaPYoAHML1GLMUnR//PDhiMHXN/M6g==}
+    engines: {node: '>=11.7.0'}
+
   rollup-plugin-cleandir@2.0.0:
     resolution: {integrity: sha512-cTL/WbBJqHQkYBplhtiQ/yc0IqTuRR7EGw/S+XtQdaFhtv6+Xq/j8dxkk5lzTcxd0hCahUebZFYhLBRzSsgynw==}
+    peerDependencies:
+      rollup: '>=2.0.0'
+
+  rollup-plugin-gzip@3.1.2:
+    resolution: {integrity: sha512-9xemMyvCjkklgNpu6jCYqQAbvCLJzA2nilkiOGzFuXTUX3cXEFMwIhsIBRF7kTKD/SnZ1tNPcxFm4m4zJ3VfNQ==}
+    engines: {node: '>=10.0.0'}
     peerDependencies:
       rollup: '>=2.0.0'
 
@@ -15235,9 +15251,15 @@ snapshots:
       hash-base: 3.1.0
       inherits: 2.0.4
 
+  rollup-plugin-brotli@3.1.0: {}
+
   rollup-plugin-cleandir@2.0.0(rollup@4.18.0):
     dependencies:
       '@mstssk/cleandir': 1.2.1
+      rollup: 4.18.0
+
+  rollup-plugin-gzip@3.1.2(rollup@4.18.0):
+    dependencies:
       rollup: 4.18.0
 
   rollup-plugin-inject@3.0.2:

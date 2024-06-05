@@ -8,11 +8,9 @@
   "type": "module",
   "homepage": "https://github.com/helabenkhalfallah/frontend-beyond-webpack",
   "scripts": {
-    "build": "NODE_ENV=production rollup -c",
     "start": "rollup -c",
-    "analyze": "",
-    "lint": "",
-    "lint:fix": ""
+    "build": "NODE_ENV=production rollup -c",
+    "analyze": "NODE_ENV=analyze rollup -c"
   },
   "dependencies": {
     "@chakra-ui/react": "=2.8.2",
@@ -43,7 +41,9 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.7",
     "@rollup/plugin-typescript": "^11.1.6",
+    "rollup-plugin-brotli": "^3.1.0",
     "rollup-plugin-cleandir": "^2.0.0",
+    "rollup-plugin-gzip": "^3.1.2",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.4.0",

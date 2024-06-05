@@ -6,16 +6,20 @@ import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
-import json from '@rollup/plugin-json';
 import html from '@rollup/plugin-html';
+import json from '@rollup/plugin-json';
 import builtins from 'rollup-plugin-node-builtins';
 import globals from 'rollup-plugin-node-globals';
 import { cleandir } from 'rollup-plugin-cleandir';
 import { visualizer } from 'rollup-plugin-visualizer';
+import gzipPlugin from 'rollup-plugin-gzip';
+import BrotliCompressPlugin from 'rollup-plugin-brotli';
 
 const isProduction = process.env.NODE_ENV === 'production';
+const isAnalysis = process.env.NODE_ENV === 'analyze';
 
 console.log('isProduction: ', isProduction);
+console.log('isAnalysis: ', isAnalysis);
 
 export default {
     input: 'src/index.jsx', // Entry point for your React application
@@ -79,10 +83,15 @@ export default {
 </html>`;
             }
         }),
-        isProduction && visualizer({
+        isAnalysis && visualizer({
+            gzipSize: true,
+            brotliSize: true,
+            //template: 'sunburst',
             filename: 'bundle-analysis.html', // Output file for the visualization
             open: true // Automatically open the visualization in the browser
-        })
+        }),
+        gzipPlugin(),
+        BrotliCompressPlugin()
     ],
     onwarn: () => false // Suppress warnings
 };
