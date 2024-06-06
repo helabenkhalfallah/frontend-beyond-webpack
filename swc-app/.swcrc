@@ -1,0 +1,18 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "ecmascript",
+      "jsx": true,
+      "dynamicImport": true
+    },
+    "target": "es2017",
+    "transform": {
+      "react": {
+        "runtime": "automatic"  // Use "classic" for the old React JSX transform
+      }
+    }
+  },
+  "module": {
+    "type": "commonjs" // Specify the module type, e.g., "commonjs", "es6", etc.
+  }
+}
