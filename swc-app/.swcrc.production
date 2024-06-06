@@ -1,0 +1,36 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "ecmascript", // Enable ECMAScript syntax parsing
+      "jsx": true,            // Enable JSX support for React
+      "dynamicImport": true,  // Support for dynamic import syntax
+      "decorators": true,     // Support for decorators
+      "privateMethod": true,  // Support for private methods
+      "functionBind": true    // Support for function binding syntax
+    },
+    "transform": {
+      "react": {
+        "runtime": "automatic", // Use the new JSX transform (React 17+)
+        "development": false    // Disable development mode (optimizes React)
+      },
+      "optimizer": {
+        "globals": {
+          "vars": {
+            "__DEV__": "false"  // Replace __DEV__ with false (used in React)
+          }
+        }
+      }
+    },
+    "target": "es2021",          // Target modern JavaScript version (ES2021)
+    "loose": false,              // Enable strict mode for better optimization
+    "externalHelpers": false,    // Embed helpers directly into the code
+    "keepClassNames": false      // Minify class names to reduce size
+  },
+  "module": {
+    "type": "es6",                // Use ES6 module format
+    "strict": true,               // Enable strict mode for ES modules
+    "strictMode": true            // Add "use strict" to the top of the modules
+  },
+  "minify": true,                 // Enable code minification
+  "sourceMaps": false             // Disable source maps for smaller bundles
+}

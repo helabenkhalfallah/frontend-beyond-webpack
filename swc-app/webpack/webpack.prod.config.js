@@ -34,7 +34,10 @@ module.exports = {
 				exclude: /(node_modules)/, // 2. Exclude node_modules
 				use: {
 					loader: "swc-loader",    // 3. Use SWC loader for transformation
-					// Optional configuration: `.swcrc` can be used to configure SWC
+					options: {
+						// Load the appropriate .swcrc file
+						configFile: './.swcrc.production'
+					}
 				}
 			},
 			{

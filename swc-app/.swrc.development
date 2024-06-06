@@ -1,0 +1,20 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "ecmascript",
+      "jsx": true,
+      "dynamicImport": true
+    },
+    "target": "es2021",
+    "transform": {
+      "react": {
+        "runtime": "automatic",
+        "development": true // Enable React development mode
+      }
+    }
+  },
+  "module": {
+    "type": "commonjs"
+  },
+  "sourceMaps": true // Enable source maps for debugging
+}
