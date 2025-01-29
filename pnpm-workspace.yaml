@@ -5,3 +5,4 @@ packages:
   - swc-app
   - rollup-app
   - rspack-app
+  - webpack-to-rspack-app
