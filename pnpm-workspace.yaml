@@ -4,3 +4,4 @@ packages:
   - vite-app
   - swc-app
   - rollup-app
+  - rspack-app
