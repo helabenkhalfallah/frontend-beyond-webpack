@@ -3,14 +3,13 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from '@rspack/cli';
 import { rspack } from '@rspack/core';
-import RefreshPlugin from '@rspack/plugin-react-refresh';
 import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin';
 import zlib from 'zlib';
 import CompressionPlugin from 'compression-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer-brotli';
 
 // eslint-disable-next-line no-underscore-dangle
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const isDev = process.env.NODE_ENV === 'development';
 
 // Target browsers, see: https://github.com/browserslist/browserslist
 const targets = ['chrome >= 87', 'edge >= 88', 'firefox >= 78', 'safari >= 14'];
@@ -18,7 +17,7 @@ const targets = ['chrome >= 87', 'edge >= 88', 'firefox >= 78', 'safari >= 14'];
 export default defineConfig({
 	context: __dirname,
 	entry: {
-		main: './src/index.js',
+		main: '../src/index.js',
 	},
 	resolve: {
 		extensions: ['...', '.ts', '.tsx', '.js', '.jsx'],
@@ -48,8 +47,8 @@ export default defineConfig({
 								transform: {
 									react: {
 										runtime: 'automatic',
-										development: isDev,
-										refresh: isDev,
+										development: false,
+										refresh: false,
 									},
 								},
 							},
@@ -62,34 +61,35 @@ export default defineConfig({
 	},
 	plugins: [
 		new rspack.HtmlRspackPlugin({
-			template: './index.html',
+			template: '../index.html',
 		}),
-		isDev ? new RefreshPlugin() : null,
 		// Only register the plugin when RSDOCTOR is true, as the plugin will increase the build time.
 		process.env.RSDOCTOR &&
 			new RsdoctorRspackPlugin({
 				// plugin options
 			}),
-		!isDev &&
-			new CompressionPlugin({
-				filename: '[path][base].gz',
-				algorithm: 'gzip',
-				test: /\.js$|\.css$|\.html$/,
-				threshold: 10240,
-				minRatio: 0.8,
-			}),
-		!isDev &&
-			new CompressionPlugin({
-				filename: '[path][base].br',
-				algorithm: 'brotliCompress',
-				test: /\.(js|css|html|svg)$/,
-				compressionOptions: {
-					params: {
-						[zlib.constants.BROTLI_PARAM_QUALITY]: 11,
-					},
+		new CompressionPlugin({
+			filename: '[path][base].gz',
+			algorithm: 'gzip',
+			test: /\.js$|\.css$|\.html$/,
+			threshold: 10240,
+			minRatio: 0.8,
+		}),
+		new CompressionPlugin({
+			filename: '[path][base].br',
+			algorithm: 'brotliCompress',
+			test: /\.(js|css|html|svg)$/,
+			compressionOptions: {
+				params: {
+					[zlib.constants.BROTLI_PARAM_QUALITY]: 11,
 				},
-				threshold: 10240,
-				minRatio: 0.8,
+			},
+			threshold: 10240,
+			minRatio: 0.8,
+		}),
+		process.env.BUNDLEANALYZE &&
+			new BundleAnalyzerPlugin({
+				analyzerPort: 9003,
 			}),
 	].filter(Boolean),
 	optimization: {

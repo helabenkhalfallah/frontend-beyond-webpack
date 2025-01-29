@@ -7,10 +7,10 @@
   "main": "index.js",
   "homepage": "https://github.com/helabenkhalfallah/frontend-beyond-webpack",
   "scripts": {
-    "start": "cross-env NODE_ENV=development rspack serve -c -c rspack.config.mjs",
-    "build": "cross-env NODE_ENV=production rspack build -c rspack.config.mjs",
-    "analyze": "cross-env NODE_ENV=production rspack build -c rspack.config.debug.mjs --analyze",
-    "doctor": "RSDOCTOR=true pnpm run build",
+    "start": "cross-env NODE_ENV=development rspack serve -c ./rspack/rspack.config.dev.mjs",
+    "build": "cross-env NODE_ENV=production rspack build -c ./rspack/rspack.config.prod.mjs",
+    "analyze": "BUNDLEANALYZE=true cross-env NODE_ENV=production rspack build -c ./rspack/rspack.config.prod.debug.mjs --analyze",
+    "doctor": "RSDOCTOR=true rspack build -c ./rspack/rspack.config.prod.debug.mjs",
     "lint": "eslint --cache --cache-location ./.eslintcache --ext js,jsx ./src",
     "lint:fix": "eslint --cache --cache-location ./.eslintcache --ext js,jsx ./src --fix"
   },
