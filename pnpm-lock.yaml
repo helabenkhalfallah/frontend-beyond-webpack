@@ -627,7 +627,7 @@ importers:
     dependencies:
       '@chakra-ui/react':
         specifier: '=2.8.2'
-        version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.2.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.2.0))(@types/react@18.3.3)(react@18.2.0))(@types/react@18.3.3)(framer-motion@11.1.9(@emotion/is-prop-valid@1.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 2.8.2(@emotion/react@11.11.4(@types/react@18.2.48)(react@18.2.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.2.48)(react@18.2.0))(@types/react@18.2.48)(react@18.2.0))(@types/react@18.2.48)(framer-motion@11.1.9(@emotion/is-prop-valid@1.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@tanstack/react-query':
         specifier: '=4.29.12'
         version: 4.29.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -665,39 +665,30 @@ importers:
         specifier: '=0.13.11'
         version: 0.13.11
     devDependencies:
-      '@babel/core':
-        specifier: '=7.22.1'
-        version: 7.22.1
-      '@babel/eslint-parser':
-        specifier: '=7.21.8'
-        version: 7.21.8(@babel/core@7.22.1)(eslint@8.41.0)
-      '@babel/eslint-plugin':
-        specifier: '=7.19.1'
-        version: 7.19.1(@babel/eslint-parser@7.21.8(@babel/core@7.22.1)(eslint@8.41.0))(eslint@8.41.0)
-      '@babel/plugin-transform-regenerator':
-        specifier: '=7.21.5'
-        version: 7.21.5(@babel/core@7.22.1)
-      '@babel/preset-env':
-        specifier: '=7.22.2'
-        version: 7.22.2(@babel/core@7.22.1)
-      '@babel/preset-react':
-        specifier: '=7.22.3'
-        version: 7.22.3(@babel/core@7.22.1)
-      '@webpack-cli/generators':
-        specifier: '=3.0.4'
-        version: 3.0.4(encoding@0.1.13)(mem-fs@2.3.0)(prettier@2.8.8)(webpack-cli@5.1.1)(webpack@5.84.1)
-      babel-loader:
-        specifier: '=9.1.2'
-        version: 9.1.2(@babel/core@7.22.1)(webpack@5.84.1(webpack-cli@5.1.1))
+      '@rsdoctor/rspack-plugin':
+        specifier: ^0.4.13
+        version: 0.4.13(@rspack/core@1.2.2)(webpack@5.84.1)
+      '@rspack/cli':
+        specifier: '=1.2.2'
+        version: 1.2.2(@rspack/core@1.2.2)(@types/express@4.17.21)(webpack@5.84.1)
+      '@rspack/core':
+        specifier: '=1.2.2'
+        version: 1.2.2
+      '@rspack/plugin-react-refresh':
+        specifier: 1.0.0
+        version: 1.0.0(react-refresh@0.14.2)
+      '@types/react':
+        specifier: '=18.2.48'
+        version: 18.2.48
+      '@types/react-dom':
+        specifier: '=18.2.18'
+        version: 18.2.18
       compression-webpack-plugin:
         specifier: '=10.0.0'
-        version: 10.0.0(webpack@5.84.1(webpack-cli@5.1.1))
-      css-loader:
-        specifier: '=6.8.1'
-        version: 6.8.1(webpack@5.84.1(webpack-cli@5.1.1))
-      css-minimizer-webpack-plugin:
-        specifier: '=5.0.0'
-        version: 5.0.0(webpack@5.84.1(webpack-cli@5.1.1))
+        version: 10.0.0(webpack@5.84.1)
+      cross-env:
+        specifier: '=7.0.3'
+        version: 7.0.3
       eslint:
         specifier: '=8.41.0'
         version: 8.41.0
@@ -722,45 +713,12 @@ importers:
       eslint-plugin-react-hooks:
         specifier: '=4.6.0'
         version: 4.6.0(eslint@8.41.0)
-      html-loader:
-        specifier: '=4.2.0'
-        version: 4.2.0(webpack@5.84.1(webpack-cli@5.1.1))
-      html-webpack-plugin:
-        specifier: '=5.5.1'
-        version: 5.5.1(webpack@5.84.1(webpack-cli@5.1.1))
-      mini-css-extract-plugin:
-        specifier: '=2.7.6'
-        version: 2.7.6(webpack@5.84.1(webpack-cli@5.1.1))
       prettier:
         specifier: '=2.8.8'
         version: 2.8.8
-      sass:
-        specifier: '=1.62.1'
-        version: 1.62.1
-      sass-loader:
-        specifier: '=13.3.1'
-        version: 13.3.1(sass@1.62.1)(webpack@5.84.1(webpack-cli@5.1.1))
-      style-loader:
-        specifier: '=3.3.3'
-        version: 3.3.3(webpack@5.84.1(webpack-cli@5.1.1))
-      terser-webpack-plugin:
-        specifier: '=5.3.9'
-        version: 5.3.9(webpack@5.84.1(webpack-cli@5.1.1))
-      webpack:
-        specifier: '=5.84.1'
-        version: 5.84.1(webpack-cli@5.1.1)
       webpack-bundle-analyzer-brotli:
         specifier: '=4.0.0'
         version: 4.0.0
-      webpack-cli:
-        specifier: '=5.1.1'
-        version: 5.1.1(@webpack-cli/generators@3.0.4)(webpack-dev-server@4.15.0)(webpack@5.84.1)
-      webpack-dev-server:
-        specifier: '=4.15.0'
-        version: 4.15.0(webpack-cli@5.1.1)(webpack@5.84.1)
-      workbox-webpack-plugin:
-        specifier: '=7.0.0'
-        version: 7.0.0(@types/babel__core@7.20.5)(webpack@5.84.1(webpack-cli@5.1.1))
       zlib:
         specifier: '=1.0.5'
         version: 1.0.5
@@ -8331,18 +8289,6 @@ packages:
       utf-8-validate:
         optional: true
 
-  ws@8.17.0:
-    resolution: {integrity: sha512-uJq6108EgZMAl20KagGkzCKfMEjxmKvZHG7Tlq0Z6nOky7YF7aq4mOx6xK8TJ/i1LeK4Qus7INktacctDgY8Ow==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
   ws@8.17.1:
     resolution: {integrity: sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ==}
     engines: {node: '>=10.0.0'}
@@ -12179,7 +12125,7 @@ snapshots:
       p-retry: 4.6.2
       webpack-dev-middleware: 7.4.2(webpack@5.84.1)
       webpack-dev-server: 5.0.4(webpack@5.84.1)
-      ws: 8.17.0
+      ws: 8.17.1
     transitivePeerDependencies:
       - '@types/express'
       - bufferutil
@@ -12197,6 +12143,13 @@ snapshots:
       html-entities: 2.5.2
     optionalDependencies:
       react-refresh: 0.14.0
+
+  '@rspack/plugin-react-refresh@1.0.0(react-refresh@0.14.2)':
+    dependencies:
+      error-stack-parser: 2.1.4
+      html-entities: 2.5.2
+    optionalDependencies:
+      react-refresh: 0.14.2
 
   '@sigstore/bundle@1.1.0':
     dependencies:
@@ -18817,8 +18770,6 @@ snapshots:
       async-limiter: 1.0.1
 
   ws@7.5.9: {}
-
-  ws@8.17.0: {}
 
   ws@8.17.1: {}
 
